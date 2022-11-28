@@ -1,37 +1,45 @@
-
+import "./categories.styles.scss"
 const App = () =>{
-  return <div className="kategoriler-konteynırı">
-    <div className="kategori-konteynırı">{/*<img src="" alt=""/>*/}
-<div className="kategori-gövde-konteynırı">
-  <h2>Hats</h2>
-  <p>Shop Now</p>
-</div>
-    </div>
-    <div className="kategori-konteynırı">{/*<img src="" alt=""/>*/}
-<div className="kategori-gövde-konteynırı">
-  <h2>Jackets</h2>
-  <p>Shop Now</p>
-</div>
-    </div>
-    <div className="kategori-konteynırı">{/*<img src="" alt=""/>*/}
-<div className="kategori-gövde-konteynırı">
-  <h2>Sneakers</h2>
-  <p>Shop Now</p>
-</div>
-    </div>
-    <div className="kategori-konteynırı">{/*<img src="" alt=""/>*/}
-<div className="kategori-gövde-konteynırı">
-  <h2>Mens</h2>
-  <p>Shop Now</p>
-</div>
-    </div>
-    <div className="kategori-konteynırı">{/*<img src="" alt=""/>*/}
-<div className="kategori-gövde-konteynırı">
-  <h2>Womens</h2>
-  <p>Shop Now</p>
-</div>
-    </div>
+  const kategoriler = 
+    [
+      {
+        "id": 1,
+        "title": "hats",
+        "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
+      },
+      {
+        "id": 2,
+        "title": "jackets",
+        "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png"
+      },
+      {
+        "id": 3,
+        "title": "sneakers",
+        "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png"
+      },
+      {
+        "id": 4,
+        "title": "womens",
+        "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png"
+      },
+      {
+        "id": 5,
+        "title": "mens",
+        "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
+      }
+    ]
+  
+  return (<div className="kategoriler-konteynırı">
+    {kategoriler.map(({title,id,imageUrl})=>(
+      <div key={id} className="kategori-konteynırı">
+        <div className="background-image" style={{backgroundImage:`url(${imageUrl})`}}></div>
+      <div className="kategori-gövde-konteynırı">
+        <h2>{title}</h2>
+        <p>Shop Now</p>
+      </div>
+      </div>
+    ))}
   </div>
-}
+  )}
 
 export default App;
