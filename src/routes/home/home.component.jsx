@@ -34,7 +34,7 @@ const Home = () =>{
     <div>
         <Directory kategoriler={kategoriler}/>
          <Outlet/> {/*aşağı alırsam aşağıda render olur */}
-        </div>
+    </div>
   )
 }
 
