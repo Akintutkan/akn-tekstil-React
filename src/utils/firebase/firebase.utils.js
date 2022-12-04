@@ -5,12 +5,7 @@ import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore"
 import { Await } from "react-router-dom";
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDjdk1DV68nPFqElvEaKM7GlWNQJpav8r4",
-    authDomain: "akn-tekstil.firebaseapp.com",
-    projectId: "akn-tekstil",
-    storageBucket: "akn-tekstil.appspot.com",
-    messagingSenderId: "1027812059667",
-    appId: "1:1027812059667:web:bf1d9da07403e7dbb9ede6"
+   //auth Code
   };
   
   // Initialize Firebase
