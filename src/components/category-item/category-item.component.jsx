@@ -1,11 +1,15 @@
 import "./category-item.styles.scss"
+import { withRouter } from 'react-router-dom';
+
 
 
 const CategoryItem =({category}) => {
     const {imageUrl,title} = category
 return (
-<div className="kategori-konteynırı">
-<div className="background-image" 
+<div className="kategori-konteynırı" 
+    onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
+<div className="background-image"
 style={{backgroundImage:`url(${imageUrl})`}}>
 </div>
 <div className="kategori-gövde-konteynırı">

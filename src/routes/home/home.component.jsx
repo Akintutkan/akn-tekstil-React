@@ -1,7 +1,5 @@
 import {Outlet} from "react-router-dom"
 import Directory from "../../components/directory/directory.component";
-import HatProduct from "../../products/HatProduct";
-
 const Home = () =>{
   const kategoriler = [
       {
@@ -35,7 +33,6 @@ const Home = () =>{
     <div>
         <Directory kategoriler={kategoriler}/>
          <Outlet/> {/*aşağı alırsam aşağıda render olur */}
-         
     </div>
   )
 }
