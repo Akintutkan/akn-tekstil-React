@@ -1,12 +1,13 @@
 import {Outlet} from "react-router-dom"
 import Directory from "../../components/directory/directory.component";
+import HatProduct from "../../products/HatProduct";
 
 const Home = () =>{
   const kategoriler = [
       {
         "id": 1,
         "title": "hats",
-        "imageUrl": "https://i.ibb.co/cvpntL1/hats.png"
+        "imageUrl": "https://i.ibb.co/cvpntL1/hats.png",
       },
       {
         "id": 2,
@@ -26,7 +27,7 @@ const Home = () =>{
       {
         "id": 5,
         "title": "mens",
-        "imageUrl": "https://i.ibb.co/R70vBrQ/men.png"
+        "imageUrl": "https://i.ibb.co/R70vBrQ/men.png",
       }
     ]
   
@@ -34,6 +35,7 @@ const Home = () =>{
     <div>
         <Directory kategoriler={kategoriler}/>
          <Outlet/> {/*aşağı alırsam aşağıda render olur */}
+         
     </div>
   )
 }
