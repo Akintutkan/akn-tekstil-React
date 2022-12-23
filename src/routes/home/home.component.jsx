@@ -1,11 +1,13 @@
 import {Outlet} from "react-router-dom"
 import Directory from "../../components/directory/directory.component";
+
 const Home = () =>{
   const kategoriler = [
       {
         "id": 1,
         "title": "hats",
         "imageUrl": "https://i.ibb.co/cvpntL1/hats.png",
+         "linkUrl": "../../products/HatProduct"
       },
       {
         "id": 2,
