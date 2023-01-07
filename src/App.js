@@ -14,7 +14,16 @@ import SneakerProduct from "./products/SneakerProduct";
 
 
 const Shop = () => {
-  return (<h1> Ben Mağaza Sayfasıyım</h1>
+  return (
+  <>
+  <h1> Ben Mağaza Sayfasıyım</h1>
+  
+<HatProduct/>
+<JacketProduct/>
+<MenProduct/>
+<WomenProduct/>
+<SneakerProduct/>
+</>
   
   )
 }
