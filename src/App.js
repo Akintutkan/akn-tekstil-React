@@ -8,26 +8,7 @@ import MenProduct from "./products/MenProduct";
 import JacketProduct from "./products/JacketProduct";
 import WomenProduct from "./products/WomenProduct";
 import SneakerProduct from "./products/SneakerProduct";
-
-
-
-
-
-const Shop = () => {
-  return (
-  <>
-  <h1> Ben Mağaza Sayfasıyım</h1>
-  
-<HatProduct/>
-<JacketProduct/>
-<MenProduct/>
-<WomenProduct/>
-<SneakerProduct/>
-</>
-  
-  )
-}
-
+import Shop from "./routes/shop/shop.component";
 
 const App = () =>{
   return (

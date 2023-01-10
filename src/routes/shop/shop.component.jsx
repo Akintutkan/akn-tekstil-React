@@ -1,14 +1,15 @@
 import React from 'react'
-import HatProduct from "../products/HatProduct"
-
-const shop = () => {
+import HatProduct from '../../products/HatProduct'
+const Shop = () => {
   return (
-    <div>
-        <HatProduct/>
+  <>
+  <h1> Ben Mağaza Sayfasıyım</h1>
+  
+<HatProduct/>
 
-
-    </div>
+</>
+  
   )
 }
 
-export default shop
+export default Shop
