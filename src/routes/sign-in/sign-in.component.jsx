@@ -8,9 +8,17 @@ const SignIn = () => {
        const userDocRef = await createUserDocumentFromAuth(user)
     }
     const [form,setForm] = useState(formValues)
-    const onChangeInput => ( )
+    const onChangeInput =(e) =>{
+        setForm({...form, [e.target.name]:e.target.value})
+    }
+    const onSubmit = (e) => {
+		e.preventDefault(); // Form bildirildiğinde sayfanın yenilenme işlemini durdurmak için kullandık
+		if (form.email === "" || form.password === "") {
+			return false;
+		}
+    }
     return (
-        <form //onSubmit={onSubmit} // submit olduğunda çalışsın 
+        <form onSubmit={onSubmit} // submit olduğunda çalışsın 
 		> 
 			<div>
 				<input
