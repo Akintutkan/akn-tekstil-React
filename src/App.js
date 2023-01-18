@@ -19,11 +19,11 @@ const App = () =>{
     <Route path="shop" element ={<Shop/>} />
     <Route path="cart" element ={<Cart/>} />
     <Route path="sign-in" element={<SignIn />}/>
-    <Route path="hat" element={<HatProduct />}/>
+    {/* <Route path="hat" element={<HatProduct />}/>
     <Route path="men" element={<MenProduct />}/>
     <Route path="women" element={<WomenProduct />}/>
     <Route path="jacket" element={<JacketProduct />}/>
-    <Route path="sneaker" element={<SneakerProduct />}/>
+    <Route path="sneaker" element={<SneakerProduct />}/> */}
     </Route>
     </Routes>
       )

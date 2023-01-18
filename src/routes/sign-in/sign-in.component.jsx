@@ -1,12 +1,26 @@
-import { useState } from "react"
-import { signInWithGooglePopup, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils"
+import { useState,} from "react"
+import { getRedirectResult } from "firebase/auth"
+import { auth,signInWithGooglePopup,signInWithGoogleRedirect, createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils"
 
 const formValues = {email:"",password:""}
 const SignIn = () => {
+	// useEffect(async() =>{
+	// 	const response = await getRedirectResult(auth);
+	// 	if(response){
+	// 		const userDocRef = await createUserDocumentFromAuth(response.user)
+	// 	}
+	// },[]);
+
     const logGoogleUser = async () => {
        const {user} = await signInWithGooglePopup()
        const userDocRef = await createUserDocumentFromAuth(user)
     }
+	// const logGoogleRedirectUser = async () => {
+	// 	const {user} = await signInWithGoogleRedirect()
+	// 	console.log({user})
+	//  }
+
+
     const [form,setForm] = useState(formValues)
     const onChangeInput =(e) =>{
         setForm({...form, [e.target.name]:e.target.value})
@@ -42,6 +56,7 @@ const SignIn = () => {
 
 			<div className="btn">
             <button onClick={logGoogleUser}>Sign in with Google Popup</button>
+            {/* <button onClick={signInWithGoogleRedirect}>Sign in with Redirect</button> */}
 			</div>
 		</form>
       
