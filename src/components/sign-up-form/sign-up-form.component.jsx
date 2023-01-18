@@ -38,7 +38,7 @@ const SignUpForm = () => {
   return (
     <div>
         <h1>sign Up with your email and password</h1>
-        <form onSubmit= {() =>{}}>
+        <form onSubmit={handleSubmit}>
             <label>Display Name</label>
             <input type="text" required onChange={handleChange} name="displayName" value={displayName}/>
             <label>Email</label>
