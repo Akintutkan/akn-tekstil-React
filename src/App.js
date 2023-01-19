@@ -1,13 +1,8 @@
 import {Routes,Route} from "react-router-dom"
 import Navigation from "./routes/navigation/navigation.component";
 import Home from "./routes/home/home.component";
-import SignIn from "./routes/sign-in/sign-in.component";
+import Authentication from "./routes/authentication/authentication.component";
 import Cart from "./routes/cart/Cart";
-import HatProduct from "./products/HatProduct";
-import MenProduct from "./products/MenProduct";
-import JacketProduct from "./products/JacketProduct";
-import WomenProduct from "./products/WomenProduct";
-import SneakerProduct from "./products/SneakerProduct";
 import Shop from "./routes/shop/shop.component";
 
 const App = () =>{
@@ -18,12 +13,7 @@ const App = () =>{
     <Route index element={<Home/>} />
     <Route path="shop" element ={<Shop/>} />
     <Route path="cart" element ={<Cart/>} />
-    <Route path="sign-in" element={<SignIn />}/>
-    {/* <Route path="hat" element={<HatProduct />}/>
-    <Route path="men" element={<MenProduct />}/>
-    <Route path="women" element={<WomenProduct />}/>
-    <Route path="jacket" element={<JacketProduct />}/>
-    <Route path="sneaker" element={<SneakerProduct />}/> */}
+    <Route path="auth" element={<Authentication />}/>
     </Route>
     </Routes>
       )
