@@ -1,31 +1,35 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState} from 'react'
 import { signInWithGooglePopup, createUserDocumentFromAuth,signInAuthUserWithEmailAndPassword} from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/Form-input.component'
 import CustomButton from '../button/custom-button.component'
-import { UserContext } from '../../contexts/user.context'
+// import { UserContext } from '../../contexts/user.context'
 import "./sign-in-form.styles.scss"
 const defaultFormFields = {email:"",password:""}
 
 
 const SignInForm = () => {
     const [formFields,setFormFields] = useState(defaultFormFields)
-    const {email,password} = formFields
+    const {displayName,email,password,confirmPassword} = formFields
     console.log(formFields)
 
-    const {setCurrentUser} = useContext(UserContext)
+    // const {setCurrentUser} = useContext(UserContext)
     const resetFormFields = () =>{
         setFormFields(defaultFormFields)
     }
     const signInWithGoogle = async () => {
-        const {user} = await signInWithGooglePopup()
-        await createUserDocumentFromAuth(user)
+        await signInWithGooglePopup()
+        
      }
     const handleSubmit = async(e) => {
         e.preventDefault()
+        if (password !== confirmPassword) {
+            alert("password do not match")
+            return
+        }
         try {
             const {user} = await signInAuthUserWithEmailAndPassword(email,password)
-            setCurrentUser(user)
+            await createUserDocumentFromAuth(user,{displayName})
             resetFormFields()
         }catch(error){
             switch(error.code){

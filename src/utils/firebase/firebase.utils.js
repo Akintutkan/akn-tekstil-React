@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app"
-import {getAuth,signInWithRedirect,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} from "firebase/auth"
+import {getAuth,signInWithRedirect,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "firebase/auth"
 
 import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore"
 import { Await } from "react-router-dom";
@@ -57,3 +57,5 @@ const firebaseConfig = {
   }
 
   export const signOutUser = () => async () => await signOut(auth);
+
+  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,callback);
