@@ -1,13 +1,17 @@
 import React from 'react'
-import HatProduct from '../../products/HatProduct'
+import { useContext } from 'react'
+import { ProductsContext } from '../../contexts/products.context'
+import ProductCard from '../../components/product-card/product-card.component'
+import "./shop.styşes.scss"
 const Shop = () => {
+  const {products} = useContext(ProductsContext)
   return (
-  <>
-  <h1> Ben Mağaza Sayfasıyım</h1>
+  <div className="products-container">
+  {products.map(({product}) => (
+   <ProductCard key={product.id} product={product}/>
+  ))}
   
-<HatProduct/>
-
-</>
+</div>
   
   )
 }
