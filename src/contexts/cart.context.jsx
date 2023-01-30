@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect,useReducer } from "react";
+import { createContext,useReducer } from "react";
+import { createAction } from "../utils/reducer/reducer.utils";
 
 const addCartItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -40,6 +41,10 @@ clearItemFromCart: () => {},
   cartCount: 0,
   cartTotal: 0
 });
+const CART_ACTION_TYPES = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_IS_CART_OPEN:"SET_IS_CART_OPEN"
+}
 
 const INITIAL_STATE = {
   cartCount: 0,
@@ -52,10 +57,15 @@ const cartReducer = (state,action) =>{
   const {type,payload}= action;
 
   switch (type) {
-    case "SET_CART_ITEMS":
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
       return {
         ...state,
         ...payload
+      }
+      case CART_ACTION_TYPES.SET_IS_CART_OPEN:
+      return {
+        ...state,
+        isCartOpen:payload,
       }
     default:
       throw new Error(`unhandled type of ${type} in cartReducer`)
@@ -98,8 +108,7 @@ const updateCartItemsReducer = (newCartItems) => {
     (total,cartItem) => total + cartItem.quantity * cartItem.price,
     0
   )
-  dispatch({type:"SET_CART_ITEMS",payload: {cartItems:newCartItems,cartTotal:newCartTotal,cartCount:newCartCount}})
-  
+  dispatch(createAction(CART_ACTION_TYPES.SET_CART_ITEMS,{cartItems:newCartItems,cartTotal:newCartTotal,cartCount:newCartCount}))
 }
 
   const addItemToCart = (productToAdd) => {
@@ -114,6 +123,9 @@ const updateCartItemsReducer = (newCartItems) => {
     const newCartItems = clearCartItem(cartItems, cartItemToClear);
     updateCartItemsReducer(newCartItems)
   };
-  const value = { isCartOpen, setIsCartOpen:( )=>{}, addItemToCart, cartItems,cartCount,clearItemFromCart,removeItemToCart,cartTotal };
+  const setIsCartOpen = (bool) => {
+    dispatch(createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN,bool))
+  }
+  const value = { isCartOpen, setIsCartOpen, addItemToCart, cartItems,cartCount,clearItemFromCart,removeItemToCart,cartTotal };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
