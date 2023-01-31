@@ -7,7 +7,7 @@ export const UserContext = createContext({
     setCurrentUser: () => null,
 });
 
-export const USER_ACTİON_TYPES = {
+export const USER_ACTION_TYPES = {
     "SET_CURRENT_USER": "SET_CURRENT_USER"
 
 }
@@ -16,7 +16,7 @@ const userReducer = (state,action) => {
     const {type,payload} = action;
 
 switch(type){
-    case "SET_CURRENT_USER":
+    case USER_ACTION_TYPES.SET_CURRENT_USER:
         return{
         ...state,
         currentUser:payload
@@ -31,7 +31,7 @@ const INITIAL_STATE = {
 export  const UserProvider = ({children}) =>{
     const [{currentUser},dispatch] = useReducer(userReducer,INITIAL_STATE);
 const setCurrentUser=(user) => {
-    dispatch(createAction( USER_ACTİON_TYPES.SET_CURRENT_USER,user))
+    dispatch(createAction( USER_ACTION_TYPES.SET_CURRENT_USER,user))
 }
     const value = {currentUser, setCurrentUser}
 
