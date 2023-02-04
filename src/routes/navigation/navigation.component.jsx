@@ -23,13 +23,9 @@ const Navigation = () => {
   return (
     <Fragment>
       <div className="navigation">
-        <Link className="logo-container" to="/">
-          <CrwnLogo className="logo" />
-        </Link>
+        <Link className="logo-container" to="/"><CrwnLogo className="logo" /></Link>
         <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
-            SHOP
-          </Link>
+          <Link className="nav-link" to="/shop">SHOP</Link>
           {currentUser ? (
             <span className="nav-link" onClick={signOutUser}>
               SIGN OUT
