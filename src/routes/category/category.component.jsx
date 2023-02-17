@@ -8,6 +8,8 @@ import Spinner from '../../components/spinner/spinner.component'
 
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/categories/category.selector'
 import "./category.styles.scss"
+
+
 const Category = () => {
    const {category} = useParams()
    const categoriesMap = useSelector(selectCategoriesMap)
@@ -22,7 +24,8 @@ return(
         <h2 className='title'>{category.toUpperCase()}</h2>
     {isLoading ? (
         <Spinner/>
-    ):(<div className="category-container">
+    ):(
+    <div className="category-container">
     {products && products.map((product) =>(
         <ProductCard key={product.id} product={product} />
     ))}

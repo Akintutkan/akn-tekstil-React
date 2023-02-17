@@ -1,11 +1,12 @@
 .catgory-container{
     display:grid;
     grid-template-columns: repeat(4,1fr);
-    column-gap: 20px;
+    column-gap: 30px;
     row-gap: 50px;
 }
-.title{font-size: 38px;
-    margin-bottom: 25px;
+.title{
+font-size: 38px;
+margin-bottom: 25px;
 text-align: center;
 }
     
