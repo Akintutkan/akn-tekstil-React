@@ -1,4 +1,4 @@
-import DirectoryItem from "../directory-item/directory-item.component"
+import DirectoryItem from "../DirectoryItem/directory-item.component"
 import "./directory.styles.scss"
 
 const Directory = ({kategoriler}) =>{ 
