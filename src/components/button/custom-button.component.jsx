@@ -1,25 +1,33 @@
 import React from 'react';
-import './custom-button.styles.scss';
+import './custom-button.styles.js';
+import {
+  BaseButton,
+  GoogleSignInButton,
+  InvertedButton,
+  LoadingSpinner,
+} from './ButttonStyles';
 
- export const buttonTypes = {
+ export const BUTTON_TYPE_CLASSES = {
   google:"google-sign-in",
   inverted:"inverted",
   base:"base"}
 
-//   const getButton = (buttonType = buttonTypes.base) =>({
-// [buttonTypes.base]: BaseButton,
-// [buttonTypes.google]: GoogleSignInButton,
-// [buttonTypes.inverted]: InvertedButton,
-//   }[buttonType])
+export const getButton = (buttonType = BUTTON_TYPE_CLASSES.base) =>({
+[BUTTON_TYPE_CLASSES.base]: BaseButton,
+[BUTTON_TYPE_CLASSES.google]: GoogleSignInButton,
+[BUTTON_TYPE_CLASSES.inverted]: InvertedButton,
+  }[buttonType]);
 
-const CustomButton = ({children,inverted,isGoogleSignIn,...otherProps}) => {
+export default function Button({
+  children,
+  buttonType,
+  isLoading= false,
+  ...otherProps
+}){
+ const CustomButton = getButton(buttonType);
   return(
-  <button
-  className={`${inverted ? 'inverted' : ''} ${isGoogleSignIn ? 'google-sign-in' : ''} button-container`}
-  {...otherProps}
->
-  {children}
-  </button>
+  <CustomButton disabled={isLoading} {...otherProps}>
+  {isLoading ? <LoadingSpinner /> : children}
+  </CustomButton>
 );
 }
-export default CustomButton;
