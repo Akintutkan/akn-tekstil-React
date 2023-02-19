@@ -1,134 +1,89 @@
-import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  collection,
-  writeBatch,
-  query,
-  getDocs,
-} from 'firebase/firestore';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import {initializeApp} from "firebase/app"
+import {getAuth,signInWithRedirect,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "firebase/auth"
 
+import {getFirestore, doc, getDoc, setDoc,collection,writeBatch,query,getDocs, QuerySnapshot} from "firebase/firestore"
+import { Await } from "react-router-dom";
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyD4FzJzLcr1J6-vqix-EsTSHZLdhUW2poM',
-  authDomain: 'crown-clothing-399f7.firebaseapp.com',
-  projectId: 'crown-clothing-399f7',
-  storageBucket: 'crown-clothing-399f7.appspot.com',
-  messagingSenderId: '24535546838',
-  appId: '1:24535546838:web:bd6c1bc1760a50e0c1c277',
-};
+  apiKey: "AIzaSyDjdk1DV68nPFqElvEaKM7GlWNQJpav8r4",
+  authDomain: "akn-tekstil.firebaseapp.com",
+  projectId: "akn-tekstil",
+  storageBucket: "akn-tekstil.appspot.com",
+  messagingSenderId: "1027812059667",
+  appId: "1:1027812059667:web:bf1d9da07403e7dbb9ede6"
+  };
+  
+  // Initialize Firebase
+  const firebaseApp = initializeApp(firebaseConfig);
+  
+  const googleProvider = new GoogleAuthProvider();
+  googleProvider.setCustomParameters({
+    prompt: "select_account",
+  })
+  
+  export const auth = getAuth()
 
-const firebaseApp = initializeApp(firebaseConfig);
+  export const signInWithGooglePopup = () => signInWithPopup(auth,googleProvider)
+  export const signInWithGoogleRedirect = ()=> signInWithRedirect(auth,googleProvider);
 
-const auth = getAuth(firebaseApp);
+  export const db = getFirestore() 
+  export const addCollectionAndDocuments = async (collectionKey,objectsToAdd,field )=>{
+    const collectionRef = collection(db, collectionKey);
+    const batch = writeBatch(db);
+    objectsToAdd.forEach((object) =>{
+      const docRef = doc(collectionRef, object.title.toLowerCase())
+      batch.set(docRef,object)
+    })
+    await batch.commit();
+    console.log("done")
 
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
-
-const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
-
-const db = getFirestore(firebaseApp);
-
-const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-  const collectionRef = collection(db, collectionKey);
-  const batch = writeBatch(db);
-
-  objectsToAdd.forEach((object) => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
-    batch.set(docRef, object);
-  });
-
-  await batch.commit();
-  // console.log('batch commit successful');
-};
-
-const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, 'categories');
-  const q = query(collectionRef);
-
-  const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data());
-};
-
-const createUserDocumentFromAuth = async (
-  userAuth,
-  additionalInformation = {}
-) => {
-  if (!userAuth) return;
-
-  // existing document reference
-  const userDocRef = doc(db, 'users', userAuth.uid);
-
-  // user data file object
-  const userSnapshot = await getDoc(userDocRef);
-
-  // if user exists
-  if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
-
-    try {
-      await setDoc(userDocRef, {
-        displayName,
-        email,
-        createdAt,
-        ...additionalInformation,
-      });
-    } catch (error) {
-      console.log('error creating the user: ', error.message);
-    }
+  }
+  export const getCategoriesAndDocuments = async ()=>{
+    const collectionRef = collection(db,"categories")
+    const q = query(collectionRef);
+    // await Promise.reject(new Error("new error hopss"))
+    const querySnapshot = await getDocs(q)
+   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data())
   }
 
-  return userSnapshot;
-};
 
-const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !password) return;
-  return await createUserWithEmailAndPassword(auth, email, password);
-};
+  export const createUserDocumentFromAuth = async (userAuth,additionalInformation={}) => {
+    if(!userAuth) return;
+    const userDocRef = doc(db,"users", userAuth.uid)
+    console.log(userDocRef)
+    const userSnapshot = await getDoc(userDocRef)
+    console.log(userSnapshot)
+    console.log(userSnapshot.exists());
+    if(!userSnapshot.exists()){
+      const{displayName,email} = userAuth
+      const createdAt = new Date()
+      try {
+        await setDoc(userDocRef,{displayName,email,createdAt,...additionalInformation})
+      } catch (error) {
+        console.log("Kullanıcı hatası",error.message)     
+      }
+    }
+    return userSnapshot
+  }
+  export const createAuthUserWithEmailAndPassword = async(email,password)=>{
+    if(!email || !password) return
+    return await createUserWithEmailAndPassword(auth,email,password)
+  }
+  export const signInAuthUserWithEmailAndPassword = async(email,password)=>{
+    if(!email || !password) return
+    return await signInWithEmailAndPassword(auth,email,password)
+  }
 
-const signInAuthUserWithEmailAndPassword = async (email, password) => {
-  if (!email || !email) return;
-  return await signInWithEmailAndPassword(auth, email, password);
-};
+  export const signOutUser = () => async () => await signOut(auth);
 
-const signOutUser = async () => await signOut(auth);
+  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,callback);
 
-const getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
+export const getCurrentUser = () => {
+  return new Promise((resolve,reject) => {
     const unsubscribe = onAuthStateChanged(
-      auth,
-      (userAuth) => {
-        unsubscribe();
-        resolve(userAuth);
-      },
-      reject
-    );
-  });
-};
-
-export {
-  db,
-  auth,
-  signInWithGooglePopup,
-  signInWithGoogleRedirect,
-  createUserDocumentFromAuth,
-  signInAuthUserWithEmailAndPassword,
-  createAuthUserWithEmailAndPassword,
-  signOutUser,
-  addCollectionAndDocuments,
-  getCategoriesAndDocuments,
-  getCurrentUser,
-};
+      auth,(userAuth) => {unsubscribe();
+      resolve(userAuth);
+      },reject
+    )
+  })
+}  
