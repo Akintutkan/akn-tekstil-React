@@ -6,7 +6,7 @@ import { signUpStart } from '../../store/user/userAction';
 import { toast } from 'react-toastify';
 
 import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 
 import { SignUpContainer } from './SignUpStyles';
 

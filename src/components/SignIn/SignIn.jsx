@@ -7,7 +7,7 @@ import {
 } from '../../store/user/userAction';
 
 import Input from '../Input/Input';
-import Button, { BUTTON_TYPE_CLASSES } from '../Button/Button';
+import Button, { BUTTON_TYPE_CLASSES } from '../Buttons/Button';
 
 import { SignInContainer, ButtonsContainer } from './SignInStyles';
 

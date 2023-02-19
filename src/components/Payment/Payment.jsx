@@ -10,7 +10,7 @@ import { selectCurrentUser } from '../../store/user/userSelector';
 import { toast } from 'react-toastify';
 import { FormContainer, PaymentContainer } from './PaymentStyles';
 
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 
 export default function Payment() {
   const stripe = useStripe();

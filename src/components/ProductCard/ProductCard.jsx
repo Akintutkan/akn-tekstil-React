@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../store/cart/cartAction';
 import { selectCartItems } from '../../store/cart/cartSelector';
 
-import Button from '../Button/Button';
+import Button from '../Buttons/Button';
 
 import { Name, Price, Footer, ProductCartContainer } from './ProductCardStyles';
 
