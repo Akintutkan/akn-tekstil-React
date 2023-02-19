@@ -1,22 +1,27 @@
-import "./CategoryPreviewStyles.js"
-import ProductCard from "../ProductCard/product-card.component"
-import React from 'react'
-import { Link } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
+import {
+  Title,
+  Preview,
+  CategoryPreviewContainer,
+} from './CategoryPreviewStyles';
 
-const CategoryPreview = ({title,products}) => {
+import ProductCard from '../ProductCard/ProductCard';
+
+export default function CategoryPreview({ title, products }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="category-preview">
-        <h2>
-            <Link className="title">{title.toUpperCase()}</Link>
-        </h2>
-        <div className="preview">
-            {products.filter((_,idx)=> idx <4)
-            .map((product) =>(
-                <ProductCard key={product.id} product={product} />
-            ))}
-        </div>
-        </div>
-  )
+    <CategoryPreviewContainer>
+      <Title onClick={() => navigate(`/shop/${title}`)}>
+        {title.toUpperCase()}
+      </Title>
+      <Preview>
+        {products
+          .filter((_, idx) => idx < 4)
+          .map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </Preview>
+    </CategoryPreviewContainer>
+  );
 }
-
-export default CategoryPreview

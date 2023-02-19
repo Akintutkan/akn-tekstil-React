@@ -5,7 +5,7 @@ import {
 } from '../../store/category/categorySelector';
 
 import Spinner from '../../components/Spinner/Spinner';
-import CategoryPreview from '../../Components/CategoryPreview/CategoryPreview';
+import CategoryPreview from '../../components/CategoryPreview/CategoryPreview';
 
 export default function CategoriesPreview() {
   const isLoading = useSelector(selectIsLoading);

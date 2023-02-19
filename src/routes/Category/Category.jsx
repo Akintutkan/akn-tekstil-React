@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Spinner from '../../components/Spinner/Spinner';
-import ProductCard from '../../Components/ProductCard/ProductCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
 
 import {
   selectIsLoading,

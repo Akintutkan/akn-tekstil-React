@@ -4,8 +4,8 @@ import {
   selectCartTotal,
 } from '../../store/cart/cartSelector';
 
-import Payment from '../../Components/Payment/Payment';
-import CheckoutItem from '../../Components/CheckoutItem/CheckoutItem';
+import Payment from '../../components/Payment/Payment';
+import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
 
 import {
   CartTotal,
