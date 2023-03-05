@@ -6,7 +6,7 @@ export const BaseButton = styled.button`
   height: 50px;
   letter-spacing: 0.5px;
   line-height: 50px;
-  padding: 0 35px 0 35px;
+  // padding: 0 35px 0 35px;
   font-size: 15px;
   background-color: black;
   color: #fff;
@@ -18,6 +18,8 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
+  padding: 0px 0px;
   &:hover {
     background-color: white;
     color: black;
